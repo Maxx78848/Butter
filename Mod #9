@@ -1,0 +1,21 @@
+library(ggplot2)
+Flower <- read.csv(file.choose())
+head(Flower)
+
+#basic graph -> does height(v7) affect distance 
+#needed between plants(v8)
+plot(Flower$V7, Flower$V8, col = "blue", xlab = "height (cm)", ylab = "Distance between plants (cm)", main = "Height vs. Distance")
+abline(7.4859, 0.2929)
+
+#in case above is not a basic graph
+barplot(Flower$V4, main = "Flower Color")
+
+
+#lattice
+library(lattice)
+xyplot(V7 ~ V8, Flower, grid = TRUE,
+       type = c("p", "smooth"),
+       col.line = "darkorange", lwd =2, xlab = "Height (cm)", ylab = "Distance between plants (cm)", main = "Height vs. DIstance")
+
+#ggplot2
+ggplot(Flower, aes(x = V7, y= V8, color = V6)) + geom_point()+ xlab("height (cm)") + ylab("Distance between plants (cm)") + ggtitle("Preference: Height vs. Distance")
